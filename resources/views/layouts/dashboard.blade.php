@@ -35,8 +35,8 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="assets/images/logo/logo.png" alt="Logo"
-                                    srcset=""></a>
+                            <a href="index.html"><img src="{{ asset('assets/images/logo/Lawang_Adventure_Park1.png') }}"
+                                    alt="Logo" style="width: 160px; height: auto;" srcset=""></a>
                         </div>
                         <div class="toggler">
                             <a href="#" class="sidebar-hide d-xl-none d-block"><i
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="sidebar-menu">
-                    <ul class="menu">
+                    <ul class="menu mt-2">
                         <li class="sidebar-title">Menu</li>
 
                         <li class="sidebar-item active ">
@@ -59,7 +59,7 @@
 
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                               <i class="bi bi-collection-fill me-2"></i>
+                                <i class="bi bi-collection-fill me-2"></i>
                                 <span>Form Master</span>
                             </a>
                             <ul class="submenu ">
@@ -70,7 +70,7 @@
                                 </li>
 
                                 <li class="submenu-item ">
-                                    <a href="form-element-input-group.html" class="fs-7">
+                                    <a href="{{ route('wahanas.index') }}" class="fs-7">
                                         <i class="bi bi-map me-2 fs-6"></i> Wahana
                                     </a>
                                 </li>
@@ -84,7 +84,7 @@
 
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                               <i class="bi bi-bag-fill me-2"></i>
+                                <i class="bi bi-bag-fill me-2"></i>
                                 <span>Form Transaksi</span>
                             </a>
                             <ul class="submenu ">
