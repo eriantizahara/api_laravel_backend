@@ -75,7 +75,7 @@
                                     </a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="form-element-select.html" class="fs-7">
+                                    <a href="{{ route('users.index') }}" class="fs-7">
                                         <i class="bi bi-person-circle me-2 fs-6"></i> User
                                     </a>
                                 </li>

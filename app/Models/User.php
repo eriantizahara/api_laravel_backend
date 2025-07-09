@@ -7,10 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Laravel\Sanctum\HasApiTokens;
+
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,10 +22,23 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        'kodeuser', // bisa diisi sesuai kebutuhan, misal kode unik untuk user
         'name',
         'email',
         'password',
     ];
+
+
+    /**
+     * Override default identifier for authentication.
+     *
+     * @return string
+     */
+    public function getAuthIdentifierName()
+    {
+        return 'name'; // bisa disesuaikan jika login pakai name
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
