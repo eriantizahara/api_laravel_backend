@@ -64,7 +64,7 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item">
-                                    <a href="form-element-input.html" class="fs-7">
+                                    <a href="{{ route('customers.index') }}" class="fs-7">
                                         <i class="bi bi-people me-2 fs-6"></i> Customer
                                     </a>
                                 </li>

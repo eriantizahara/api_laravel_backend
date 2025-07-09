@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\WahanaControllerApi;
+use App\Http\Controllers\Api\CustomerControllerApi;
 
 
 Route::get('/user', function (Request $request) {
@@ -11,4 +12,5 @@ Route::get('/user', function (Request $request) {
 
 
 
-Route::apiResource('wahana', WahanaControllerApi::class);
+Route::apiResource('/wahana', WahanaControllerApi::class);
+Route::apiResource('/customer', CustomerControllerApi::class);
