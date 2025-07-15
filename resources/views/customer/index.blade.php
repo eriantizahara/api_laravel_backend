@@ -18,7 +18,7 @@
         <thead>
             <tr>
                 <th class="text-center">ID</th>
-                <th class="text-center">Nama Customer</th>
+                <th class="text-center">Nama</th>
                 <th class="text-center">Username</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">No HP</th>
@@ -30,7 +30,7 @@
             @foreach ($customers as $customer)
                 <tr>
                     <td class="text-center">{{ $customer->id }}</td>
-                    <td>{{ $customer->Nama }}</td>
+                    <td>{{ $customer->namacustomer }}</td>
                     <td class="text-center">{{ $customer->username }}</td>
                     <td class="text-center">{{ $customer->email }}</td>
                     <td class="text-center">{{ $customer->nohp ?? '-' }}</td>
