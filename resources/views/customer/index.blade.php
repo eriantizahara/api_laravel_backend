@@ -30,7 +30,7 @@
             @foreach ($customers as $customer)
                 <tr>
                     <td class="text-center">{{ $customer->id }}</td>
-                    <td>{{ $customer->Nama }}</td>
+                    <td>{{ $customer->namacustomer }}</td>
                     <td class="text-center">{{ $customer->username }}</td>
                     <td class="text-center">{{ $customer->email }}</td>
                     <td class="text-center">{{ $customer->nohp ?? '-' }}</td>
