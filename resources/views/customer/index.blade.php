@@ -18,7 +18,7 @@
         <thead>
             <tr>
                 <th class="text-center">ID</th>
-                <th class="text-center">Nama Customer</th>
+                <th class="text-center">Nama</th>
                 <th class="text-center">Username</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">No HP</th>
