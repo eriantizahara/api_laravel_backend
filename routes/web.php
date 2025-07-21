@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardWebController;
 use App\Http\Controllers\WahanaWebController;
-use App\Http\Controllers\CustomerWebController;
 use App\Http\Controllers\UserWebController;
 use App\Http\Controllers\LoginWebController;
 use App\Http\Controllers\PemesananTiketWebController;
@@ -20,7 +19,6 @@ Route::middleware(['auth'])->group(function () {
 
 Route::resource('/dashboard', DashboardWebController::class);
 Route::resource('/wahanas', WahanaWebController::class);
-Route::resource('/customers', CustomerWebController::class);
 Route::resource('/users', UserWebController::class);
 Route::resource('/pemesanantikets', PemesananTiketWebController::class);
 Route::get('/pemesanantikets/{id}/faktur/pdf', [PemesananTiketWebController::class, 'fakturPdf'])->name('pemesanantikets.faktur.pdf');

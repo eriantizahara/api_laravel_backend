@@ -46,7 +46,7 @@
         </tr>
         <tr>
             <td><strong>Nama</strong></td>
-            <td>: {{ $pemesanan->customer->namacustomer ?? '-' }}</td>
+            <td>: {{ $pemesanan->user->name ?? '-' }}</td>
         </tr>
         <tr>
             <td><strong>Kunjungan</strong></td>
@@ -92,80 +92,3 @@
 
 
 
-{{-- <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Tiket Masuk</title>
-    <style>
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 11px;
-            width: 280px;
-            margin: 0 auto;
-        }
-        .text-center { text-align: center; }
-        .border-top { border-top: 1px dashed #000; margin-top: 5px; margin-bottom: 5px; }
-        .ticket-info td { padding: 2px 0; }
-        .footer { font-size: 10px; text-align: center; margin-top: 10px; }
-    </style>
-</head>
-<body>
-
-    <div class="text-center">
-        <h3 style="margin:0;">TIKET MASUK WAHANA</h3>
-        <p style="margin:0;">Wisata Seru Sejahtera</p>
-        <p style="margin:0;">Jl. Liburan No.123, Kota Bahagia</p>
-        <div class="border-top"></div>
-    </div>
-
-    <table class="ticket-info" width="100%">
-        <tr>
-            <td><strong>Kode</strong></td>
-            <td>: {{ $pemesanan->kode_pemesanan }}</td>
-        </tr>
-        <tr>
-            <td><strong>Nama</strong></td>
-            <td>: {{ $pemesanan->customer->namacustomer ?? '-' }}</td>
-        </tr>
-        <tr>
-            <td><strong>Kunjungan</strong></td>
-            <td>: {{ $pemesanan->tanggal_kunjungan }}</td>
-        </tr>
-        <tr>
-            <td><strong>Total Tiket</strong></td>
-            <td>: {{ $pemesanan->total_tiket }}</td>
-        </tr>
-    </table>
-
-    <div class="border-top"></div>
-    <p><strong>Rincian Wahana:</strong></p>
-    <table width="100%">
-        @foreach($pemesanan->detailPemesanan as $item)
-        <tr>
-            <td>{{ $item->wahana->nama_wahana }}</td>
-            <td style="text-align:right;">x{{ $item->jumlah }}</td>
-        </tr>
-        @endforeach
-    </table>
-
-    <div class="border-top"></div>
-    <table width="100%">
-        <tr>
-            <td><strong>Total Bayar</strong></td>
-            <td style="text-align:right;">Rp{{ number_format($pemesanan->total_harga, 0, ',', '.') }}</td>
-        </tr>
-        <tr>
-            <td><strong>Status</strong></td>
-            <td style="text-align:right;">{{ ucfirst($pemesanan->status) }}</td>
-        </tr>
-    </table>
-
-    <div class="border-top"></div>
-    <div class="footer">
-        Terima kasih atas kunjungan Anda!<br>
-        <strong>~ Selamat bersenang-senang ~</strong>
-    </div>
-
-</body>
-</html> --}}

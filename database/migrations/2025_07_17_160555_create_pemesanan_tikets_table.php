@@ -14,11 +14,6 @@ return new class extends Migration
         Schema::create('pemesanan_tikets', function (Blueprint $table) {
             $table->id();
 
-            // Relasi ke tabel customers (wajib)
-            $table->foreignId('customer_id')
-                ->constrained('customers')
-                ->onDelete('cascade'); // Jika customer dihapus, hapus juga semua pemesanannya
-
             // Relasi ke tabel users (admin). Nullable karena bisa saja dibuat tanpa login
             $table->foreignId('user_id')
                 ->nullable()

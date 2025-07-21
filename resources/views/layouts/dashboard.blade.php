@@ -66,12 +66,6 @@
                                 <span>Form Master</span>
                             </a>
                             <ul class="submenu ">
-                                <li class="submenu-item">
-                                    <a href="{{ route('customers.index') }}" class="fs-7">
-                                        <i class="bi bi-people me-2 fs-6"></i> Customer
-                                    </a>
-                                </li>
-
                                 <li class="submenu-item ">
                                     <a href="{{ route('wahanas.index') }}" class="fs-7">
                                         <i class="bi bi-map me-2 fs-6"></i> Wahana

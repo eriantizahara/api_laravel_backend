@@ -16,38 +16,43 @@
                     <input type="text" name="kode_pemesanan" class="form-control" value="{{ $kode_pemesanan }}" readonly>
                 </div>
 
-                {{-- <div class="col-md-6">
-                <label>Admin</label>
-                <input type="text" name="admin_name" value="{{ auth()->user()->name }}" class="form-control" readonly>
-                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-            </div> --}}
-
-                <!-- Admin -->
                 <div class="col-md-6">
                     <label>Admin</label>
-                    @auth
-                        {{-- Menampilkan nama admin yang sedang login --}}
-                        <input type="text" name="user_name" value="{{ auth()->user()->name }}" class="form-control" readonly>
 
-                        {{-- Menyimpan ID admin (bukan nama) untuk disimpan di kolom user_id --}}
-                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                    @auth
+                        @if (auth()->user()->status === 'admin')
+                            {{-- Menampilkan nama admin yang sedang login --}}
+                            <input type="text" name="user_name" value="{{ auth()->user()->name }}" class="form-control"
+                                readonly>
+
+                            {{-- Menyimpan ID admin untuk disimpan ke kolom user_id --}}
+                            <input type="hidden" name="id" value="{{ auth()->user()->id }}">
+                        @else
+                            {{-- User login tapi bukan admin --}}
+                            <input type="text" class="form-control is-invalid" value="(Bukan Admin)" readonly>
+                        @endif
                     @else
+                        {{-- Tidak login --}}
                         <input type="text" class="form-control is-invalid" value="(Belum login)" readonly>
                     @endauth
                 </div>
-
             </div>
 
             <div class="row mt-3">
                 <div class="col-md-6">
-                    <label>Customer</label>
-                    <select name="customer_id" class="form-control" required>
+                    <label for="user_id">Customer</label>
+                    <select name="user_id" class="form-control" required>
                         <option value="">Pilih Customer</option>
-                        @foreach ($customers as $customer)
-                            <option value="{{ $customer->id }}">{{ $customer->namacustomer }}</option>
+                        @foreach ($users as $user)
+                            @if ($user->status === 'customer')
+                                <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                                    {{ $user->name }}
+                                </option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
+
                 <div class="col-md-6">
                     <label>Tanggal Kunjungan</label>
                     <input type="date" name="tanggal_kunjungan" class="form-control" required>
@@ -130,7 +135,16 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Simpan Pemesanan</button>
+            {{-- Tombol Simpan dan Kembali --}}
+            <div class="text-end">
+                <a href="{{ route('pemesanantikets.index') }}" class="btn btn-secondary">
+                    <i class="fa fa-arrow-left me-1"></i> Kembali
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-save me-1"></i> Simpan
+                </button>
+            </div>
+
         </form>
     </div>
 
@@ -143,7 +157,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <img src="{{ asset('images/barcode_dana.png') }}" alt="Barcode DANA" class="img-fluid"
+                    <img src="{{ asset('assets/images/barcode_dana.jpg') }}" alt="Barcode DANA" class="img-fluid"
                         style="max-width: 300px;">
                     <p class="mt-2">Silakan scan barcode ini untuk melakukan pembayaran.</p>
                 </div>
@@ -154,49 +168,67 @@
 
 @push('scripts')
     <script>
-        // Tambah baris
+        // Fungsi untuk menambahkan baris baru
         document.getElementById('addRow').addEventListener('click', function() {
             const tableBody = document.querySelector('#wahana-table tbody');
             const firstRow = tableBody.querySelector('tr');
             const newRow = firstRow.cloneNode(true);
+
+            // Reset semua input di baris baru
             newRow.querySelectorAll('input, select').forEach(input => {
-                if (input.tagName === 'INPUT') input.value = '';
+                if (input.tagName === 'INPUT') {
+                    input.value = (input.classList.contains('jumlah')) ? 1 : '';
+                } else if (input.tagName === 'SELECT') {
+                    input.selectedIndex = 0;
+                }
             });
+
             tableBody.appendChild(newRow);
         });
 
-        // Hapus baris
+        // Fungsi untuk menghapus baris
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('removeRow')) {
                 const row = e.target.closest('tr');
                 const rowCount = document.querySelectorAll('#wahana-table tbody tr').length;
-                if (rowCount > 1) row.remove();
-                hitungTotal();
+                if (rowCount > 1) {
+                    row.remove();
+                    hitungTotal();
+                }
             }
         });
 
-        // Harga dan subtotal otomatis
+        // Saat pilihan wahana berubah, update harga dan subtotal
         document.addEventListener('change', function(e) {
             if (e.target.classList.contains('wahana-select')) {
-                const harga = e.target.selectedOptions[0].dataset.harga;
+                const selectedOption = e.target.selectedOptions[0];
+                const harga = parseFloat(selectedOption.dataset.harga || 0);
                 const row = e.target.closest('tr');
+                const jumlah = parseInt(row.querySelector('.jumlah').value) || 1;
+
                 row.querySelector('.harga').value = harga;
-                const jumlah = row.querySelector('.jumlah').value || 1;
                 row.querySelector('.subtotal').value = (harga * jumlah).toFixed(2);
+
                 hitungTotal();
             }
         });
 
+        // Saat jumlah tiket berubah, update subtotal
         document.addEventListener('input', function(e) {
             if (e.target.classList.contains('jumlah')) {
                 const row = e.target.closest('tr');
-                const harga = row.querySelector('.harga').value;
-                const jumlah = e.target.value;
+                const harga = parseFloat(row.querySelector('.harga').value) || 0;
+                const jumlah = parseInt(e.target.value) || 1;
+
+                // Validasi agar jumlah minimal 1
+                e.target.value = (jumlah < 1) ? 1 : jumlah;
+
                 row.querySelector('.subtotal').value = (harga * jumlah).toFixed(2);
                 hitungTotal();
             }
         });
 
+        // Hitung total harga semua wahana
         function hitungTotal() {
             let total = 0;
             document.querySelectorAll('.subtotal').forEach(sub => {

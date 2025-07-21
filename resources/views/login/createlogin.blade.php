@@ -96,6 +96,29 @@
             <form action="{{ route('login.cek') }}" method="POST">
                 @csrf
 
+                {{-- Tampilkan pesan error login jika ada --}}
+                @if (session('msg'))
+                    <div class="alert alert-danger alert-dismissible fade show text-start mb-3" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        {{ session('msg') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                {{-- Validasi Error untuk input --}}
+                @error('name')
+                    <div class="alert alert-warning text-start py-2 px-3 small">
+                        <i class="bi bi-info-circle me-1"></i> {{ $message }}
+                    </div>
+                @enderror
+
+                @error('password')
+                    <div class="alert alert-warning text-start py-2 px-3 small">
+                        <i class="bi bi-info-circle me-1"></i> {{ $message }}
+                    </div>
+                @enderror
+
+
                 <!-- Username -->
                 <div class="form-group position-relative mb-3">
                     <input type="text" name="name" class="form-control" placeholder="Username" required>
@@ -136,6 +159,10 @@
             </div> --}}
         </div>
     </div>
+
+    <!-- Bootstrap Bundle with Popper (untuk dismiss alert, modal, dll) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- JS for show/hide password -->
     {{-- <script>

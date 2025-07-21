@@ -19,20 +19,11 @@
     <div class="row mb-1 g-3">
         <div class="col-md-3">
             <div class="card shadow-sm text-center p-3">
-                <div class="mb-2 text-primary">
-                    <i class="bi bi-people-fill fs-2"></i>
-                </div>
-                <h6 class="mb-1 text-muted">Total Pemesanan</h6>
-                <h4>{{ $totalPemesanan ?? 0 }}</h4>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow-sm text-center p-3">
                 <div class="mb-2 text-success">
                     <i class="bi bi-person-badge-fill fs-2"></i>
                 </div>
-                <h6 class="mb-1 text-muted">Total Customer</h6>
-                <h4>{{ $totalCustomer ?? 0 }}</h4>
+                <h6 class="mb-1 text-muted">Total User</h6>
+                <h4>{{ $totalUser ?? 0 }}</h4>
             </div>
         </div>
         <div class="col-md-3">
@@ -42,6 +33,15 @@
                 </div>
                 <h6 class="mb-1 text-muted">Total Wahana</h6>
                 <h4>{{ $totalWahana ?? 0 }}</h4>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <div class="mb-2 text-primary">
+                    <i class="bi bi-people-fill fs-2"></i>
+                </div>
+                <h6 class="mb-1 text-muted">Total Pemesanan</h6>
+                <h4>{{ $totalPemesanan ?? 0 }}</h4>
             </div>
         </div>
         <div class="col-md-3">

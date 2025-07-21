@@ -11,29 +11,35 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Tabel users
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('kodeuser')->unique();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('kodeuser')->unique();         // Kode unik user
+            $table->string('name');                       // Nama user
+            $table->string('email')->unique();            // Email unik
+            $table->string('password');                   // Password
+            $table->string('nohp')->nullable();           // Nomor HP (optional)
+            $table->text('alamat')->nullable();           // Alamat lengkap (optional)
+            $table->enum('status', ['admin', 'customer']); // Status user (admin/customer)
+            $table->rememberToken();                      // Token remember me
+            $table->timestamps();                         // created_at & updated_at
         });
 
+        // Tabel password reset
         Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
+            $table->string('email')->primary();           // Email untuk reset
+            $table->string('token');                      // Token reset
+            $table->timestamp('created_at')->nullable();  // Waktu dibuat
         });
 
+        // Tabel sessions
         Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
-            $table->string('ip_address', 45)->nullable();
-            $table->text('user_agent')->nullable();
-            $table->longText('payload');
-            $table->integer('last_activity')->index();
+            $table->string('id')->primary();              // ID session
+            $table->foreignId('user_id')->nullable()->index(); // ID user (optional)
+            $table->string('ip_address', 45)->nullable(); // Alamat IP
+            $table->text('user_agent')->nullable();       // Info perangkat
+            $table->longText('payload');                  // Data session
+            $table->integer('last_activity')->index();    // Waktu aktivitas terakhir
         });
     }
 
@@ -42,8 +48,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('users');
     }
 };
