@@ -12,7 +12,7 @@
     <!-- Bootstrap & Icons -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
-    
+
     <!-- App Styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 
@@ -21,7 +21,6 @@
 
 
     <style>
-
         /* Override styling untuk hapus warna ungu di auth-right (jika masih muncul) */
         #auth-right {
             background: none !important;
@@ -87,9 +86,10 @@
 <body>
     <div id="auth">
         <div class="auth-box text-center">
-            {{-- <div class="auth-logo mb-4">
-                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Logo" style="height: 40px;">
-            </div> --}}
+            <div class="auth-logo mb-3">
+                <img src="{{ asset('assets/images/logo/Lawang_Adventure_Park1.png') }}" alt="Logo"
+                    style="width: 180px; height: auto;" srcset="">
+            </div>
             <h2 class="auth-title mb-4">Login</h2>
             {{-- <p class="text-muted mb-4">Enter your credentials below</p> --}}
 
@@ -106,7 +106,8 @@
 
                 <!-- Password -->
                 <div class="form-group position-relative mb-2">
-                    <input type="password" name="password" class="form-control" placeholder="Password" id="password-field" required>
+                    <input type="password" name="password" class="form-control" placeholder="Password"
+                        id="password-field" required>
                     <div class="form-control-icon">
                         <i class="bi bi-shield-lock"></i>
                     </div>
@@ -116,8 +117,8 @@
                 <!-- Forgot password & Keep me -->
                 <div class="form-footer mb-4">
                     <div class="form-check d-flex align-items-center">
-                        <input class="form-check-input me-2" type="checkbox" name="remember" id="remember">
-                        <label class="form-check-label text-muted" for="remember">Keep me logged in</label>
+                        {{-- <input class="form-check-input me-2" type="checkbox" name="remember" id="remember">
+                        <label class="form-check-label text-muted" for="remember">Keep me logged in</label> --}}
                     </div>
                     <a href="#" class="text-primary">Forgot password?</a>
                 </div>
@@ -128,11 +129,11 @@
                 </button>
             </form>
 
-            <div class="mt-4">
+            {{-- <div class="mt-4">
                 <p class="text-muted">Don't have an account?
                     <a href="#" class="fw-bold text-primary">Sign up</a>
                 </p>
-            </div>
+            </div> --}}
         </div>
     </div>
 
