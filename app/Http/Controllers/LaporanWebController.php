@@ -12,7 +12,6 @@ class LaporanWebController extends Controller
     public function index(Request $request)
     {
         $query = Pemesanan_Tiket::with([
-            'customer',
             'user',
             'detailPemesanan.wahana'
         ]);
@@ -29,7 +28,6 @@ class LaporanWebController extends Controller
     public function cetakPDF(Request $request)
     {
         $query = Pemesanan_Tiket::with([
-            'customer',
             'user',
             'detailPemesanan.wahana'
         ]);

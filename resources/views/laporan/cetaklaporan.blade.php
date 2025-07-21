@@ -56,7 +56,6 @@
         <thead>
             <tr>
                 <th>Kode</th>
-                <th>Admin</th>
                 <th>Customer</th>
                 <th>Tanggal Pemesanan</th>
                 <th>Tanggal Kunjungan</th>
@@ -70,7 +69,6 @@
                 <tr>
                     <td class="text-center">{{ $pemesanan->kode_pemesanan }}</td>
                     <td>{{ $pemesanan->user->name }}</td>
-                    <td>{{ $pemesanan->customer->namacustomer }}</td>
                     <td class="text-center">{{ \Carbon\Carbon::parse($pemesanan->tanggal_pemesanan)->format('d-m-Y') }}</td>
                     <td class="text-center">{{ \Carbon\Carbon::parse($pemesanan->tanggal_kunjungan)->format('d-m-Y') }}</td>
                     <td class="text-center">{{ ucfirst($pemesanan->status) }}</td>
@@ -79,7 +77,7 @@
 
                 <!-- Tabel detail wahana dalam satu pemesanan -->
                 <tr>
-                    <td colspan="7">
+                    <td colspan="6">
                         <strong>Detail:</strong>
                         <ul>
                             @foreach ($pemesanan->detailPemesanan as $detail)
@@ -99,7 +97,7 @@
         <!-- Footer tabel dengan total keseluruhan -->
         <tfoot>
             <tr>
-                <th colspan="6">Grand Total</th>
+                <th colspan="5">Grand Total</th>
                 <th>Rp{{ number_format($grandTotal, 0, ',', '.') }}</th>
             </tr>
         </tfoot>

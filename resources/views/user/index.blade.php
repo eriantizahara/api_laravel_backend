@@ -21,6 +21,9 @@
                 <th class="text-center">Kode User</th>
                 <th class="text-center">Nama</th>
                 <th class="text-center">Email</th>
+                <th class="text-center">No HP</th>
+                <th class="text-center">Alamat</th>
+                <th class="text-center">Status</th>
                 <th class="text-center">Aksi</th>
             </tr>
         </thead>
@@ -31,6 +34,13 @@
                     <td class="text-center">{{ $user->kodeuser }}</td>
                     <td>{{ $user->name }}</td>
                     <td class="text-center">{{ $user->email }}</td>
+                    <td class="text-center">{{ $user->nohp ?? '-' }}</td>
+                    <td>{{ $user->alamat ?? '-' }}</td>
+                    <td class="text-center">
+                        <span class="badge bg-{{ $user->status == 'admin' ? 'success' : 'secondary' }}">
+                            {{ ucfirst($user->status) }}
+                        </span>
+                    </td>
                     <td class="text-center">
                         <a class="btn btn-warning btn-sm" href="{{ route('users.edit', $user->id) }}">
                             <i class="fa fa-edit"></i>
@@ -39,7 +49,8 @@
                         <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data user ini?')">
+                            <button class="btn btn-danger btn-sm"
+                                onclick="return confirm('Yakin ingin menghapus data user ini?')">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </form>

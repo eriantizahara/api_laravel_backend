@@ -41,7 +41,6 @@
                 <thead>
                     <tr>
                         <th class="text-center">Kode</th>
-                        <th class="text-center">Admin</th>
                         <th class="text-center">Customer</th>
                         <th class="text-center">Tanggal Pemesanan</th>
                         <th class="text-center">Tanggal Kunjungan</th>
@@ -55,7 +54,6 @@
                         <tr>
                             <td class="text-center">{{ $pemesanan->kode_pemesanan }}</td>
                             <td>{{ $pemesanan->user->name }}</td>
-                            <td>{{ $pemesanan->customer->namacustomer }}</td>
                             <td class="text-center">{{ $pemesanan->tanggal_pemesanan }}</td>
                             <td class="text-center">{{ $pemesanan->tanggal_kunjungan }}</td>
                             <td class="text-center">
@@ -83,7 +81,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="6" class="text-end">Grand Total:</th>
+                        <th colspan="5" class="text-end">Grand Total:</th>
                         <th>Rp{{ number_format($grandTotal, 0, ',', '.') }}</th>
                     </tr>
                 </tfoot>

@@ -12,7 +12,6 @@ class Pemesanan_Tiket extends Model
     protected $table = 'pemesanan_tikets';
 
     protected $fillable = [
-        'customer_id',
         'user_id',
         'kode_pemesanan',
         'tanggal_pemesanan',
@@ -22,14 +21,6 @@ class Pemesanan_Tiket extends Model
         'status',
         'bukti_pembayaran'
     ];
-
-    /**
-     * Relasi: Pemesanan dimiliki oleh 1 customer
-     */
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class);
-    }
 
     /**
      * Relasi: Pemesanan dibuat oleh 1 user/admin (bisa null)
