@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- Pastikan ini ada di <head> -->
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+
 
     @stack('styles')
 </head>
@@ -89,7 +92,7 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="form-editor-quill.html" class="fs-7">
+                                    <a href="{{ route('pemesanantikets.index') }}" class="fs-7">
                                         <i class="bi bi-ticket-perforated me-2 fs-6"></i>Pemesanan Tiket
                                     </a>
                                 </li>
@@ -106,15 +109,15 @@
 
                             <ul class="submenu">
                                 <li class="submenu-item">
-                                    <a href="table-datatables.html" class="fs-7">
-                                        <i class="bi bi-clipboard-data me-2 fs-6"></i> Laporan Pemesanan
+                                    <a href="{{ route('laporan.index') }}" class="fs-7">
+                                        <i class="bi bi-clipboard-data me-2 fs-6"></i> Laporan Pemesanan Tiket
                                     </a>
                                 </li>
-                                <li class="submenu-item">
-                                    <a href="table-pricing.html" class="fs-7">
-                                        <i class="bi bi-bar-chart-line me-2 fs-6"></i> Laporan Wahana
+                                {{-- <li class="submenu-item">
+                                    <a href="{{ route('laporan.statistik') }}" class="fs-7">
+                                        <i class="bi bi-bar-chart-line me-2 fs-6"></i> Laporan Statistik
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
 
