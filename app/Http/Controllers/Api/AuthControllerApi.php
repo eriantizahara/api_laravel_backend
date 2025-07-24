@@ -5,37 +5,41 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Customer;
+use App\Models\User;
 
 class AuthControllerApi extends Controller
 {
     public function login(Request $request)
     {
         $request->validate([
-            'username' => 'required',
+            'name' => 'required',
             'password' => 'required',
         ]);
 
-        $customer = Customer::where('username', $request->username)->first();
+        // Cari user berdasarkan name
+        $user = User::where('name', $request->name)->first();
 
-        if (!$customer || !Hash::check($request->password, $customer->password)) {
+        // Validasi login
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
-                'message' => 'Username atau password salah'
+                'message' => 'Nama atau password salah'
             ], 401);
         }
 
-        $token = $customer->createToken('mobile')->plainTextToken;
+        // Generate token menggunakan Sanctum
+        $token = $user->createToken('mobile')->plainTextToken;
 
+        // Return response lengkap
         return response()->json([
-            'customer' => [
-                'id' => $customer->id,
-                'namacustomer' => $customer->namacustomer,
-                'username' => $customer->username,
-                'email' => $customer->email,
-                'nohp' => $customer->nohp,
-                'alamat' => $customer->alamat,
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'nohp' => $user->nohp,
+                'alamat' => $user->alamat,
+                'status' => $user->status,
             ],
-            'token' => $token,
+            'token' => $token
         ]);
     }
 }

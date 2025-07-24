@@ -25,7 +25,6 @@ class UserWebController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kodeuser' => 'required|unique:users,kodeuser',
             'name'     => 'required',
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|min:6',
@@ -35,7 +34,6 @@ class UserWebController extends Controller
         ]);
 
         User::create([
-            'kodeuser' => $request->kodeuser,
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
@@ -63,7 +61,6 @@ class UserWebController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'kodeuser' => 'required|unique:users,kodeuser,' . $user->id,
             'name'     => 'required',
             'email'    => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:6',
@@ -73,7 +70,6 @@ class UserWebController extends Controller
         ]);
 
         $user->update([
-            'kodeuser' => $request->kodeuser,
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => $request->filled('password') ? Hash::make($request->password) : $user->password,
