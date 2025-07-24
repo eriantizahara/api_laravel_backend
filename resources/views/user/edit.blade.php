@@ -13,16 +13,6 @@
             @csrf {{-- Token keamanan --}}
             @method('PUT') {{-- Gunakan method PUT untuk update data --}}
 
-            {{-- Input: Kode User --}}
-            <div class="mb-3">
-                <label for="kodeuser" class="form-label">Kode User</label>
-                <input type="text" name="kodeuser" id="kodeuser" value="{{ old('kodeuser', $user->kodeuser) }}"
-                    class="form-control @error('kodeuser') is-invalid @enderror" required>
-                @error('kodeuser')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-
             {{-- Input: Nama --}}
             <div class="mb-3">
                 <label for="name" class="form-label">Nama</label>

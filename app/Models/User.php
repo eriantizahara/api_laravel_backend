@@ -22,7 +22,6 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'kodeuser', // bisa diisi sesuai kebutuhan, misal kode unik untuk user
         'name',
         'email',
         'password',

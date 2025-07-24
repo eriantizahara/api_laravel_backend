@@ -18,7 +18,6 @@
         <thead>
             <tr>
                 <th class="text-center">ID</th>
-                <th class="text-center">Kode User</th>
                 <th class="text-center">Nama</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">No HP</th>
@@ -31,7 +30,6 @@
             @foreach ($users as $user)
                 <tr>
                     <td class="text-center">{{ $user->id }}</td>
-                    <td class="text-center">{{ $user->kodeuser }}</td>
                     <td>{{ $user->name }}</td>
                     <td class="text-center">{{ $user->email }}</td>
                     <td class="text-center">{{ $user->nohp ?? '-' }}</td>
