@@ -46,7 +46,7 @@ class WahanaWebController extends Controller
             'foto'          => $path
         ]);
 
-        return redirect()->route('wahanas.index')->with('success', 'Data Wahana berhasil ditambahkan');
+        return redirect()->route('wahanas.index')->with('success', 'Data wahana berhasil ditambahkan');
     }
 
     // Form edit
@@ -84,7 +84,7 @@ class WahanaWebController extends Controller
             'foto'          => $path
         ]);
 
-        return redirect()->route('wahanas.index')->with('success', 'Data Wahana berhasil diupdate');
+        return redirect()->route('wahanas.index')->with('success', 'Data wahana berhasil diedit');
     }
 
     // Hapus data

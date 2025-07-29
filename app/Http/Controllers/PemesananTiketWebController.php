@@ -106,7 +106,7 @@ class PemesananTiketWebController extends Controller
         }
 
         // Redirect dengan pesan sukses
-        return redirect()->route('pemesanantikets.index')->with('success', 'Pemesanan berhasil ditambahkan.');
+        return redirect()->route('pemesanantikets.index')->with('success', 'Data pemesanan tiket berhasil ditambahkan.');
     }
 
 
@@ -183,7 +183,7 @@ class PemesananTiketWebController extends Controller
             ]);
         }
 
-        return redirect()->route('pemesanantikets.index')->with('success', 'Pemesanan berhasil diperbarui.');
+        return redirect()->route('pemesanantikets.index')->with('success', 'Data pemesanan tiket berhasil diedit.');
     }
 
     // Hapus data
