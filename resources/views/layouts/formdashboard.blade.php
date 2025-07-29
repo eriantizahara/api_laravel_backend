@@ -6,8 +6,9 @@
             <h1 class="text-3xl font-bold flex items-center gap-2">
                 Selamat Datang <span>👋</span>
             </h1>
+
             <p class="mt-2 text-gray-700">
-                Hai, selamat datang di dashboard Anda. Silakan gunakan menu di samping untuk mengelola data Pemesanan Tiket
+                Hai admin {{ Auth::user()->name }}, selamat datang di dashboard Anda. Silakan gunakan menu di samping untuk mengelola data Pemesanan Tiket
                 Wahana.
             </p>
         </div>

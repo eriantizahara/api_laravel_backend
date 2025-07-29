@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('page-heading')
-    <h2 class="text-3xl font-bold">Form Pemesanan Tiket</h2>
+    <h2 class="text-3xl font-bold">Entri Data Pemesanan Tiket</h2>
 @endsection
 
 @section('content')

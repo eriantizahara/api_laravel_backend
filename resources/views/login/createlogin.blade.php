@@ -120,36 +120,65 @@
 
 
                 <!-- Username -->
-                <div class="form-group position-relative mb-3">
-                    <input type="text" name="name" class="form-control" placeholder="Username" required>
-                    <div class="form-control-icon">
-                        <i class="bi bi-person"></i>
+                <div class="form-group mb-3">
+                    {{-- Label di kiri atas --}}
+                    <label for="name" class="form-label d-block text-start">Username</label>
+
+                    {{-- Wrapper ikon dan input --}}
+                    <div class="position-relative">
+                        {{-- Ikon di dalam input --}}
+                        <div class="position-absolute top-50 start-0 translate-middle-y ps-3">
+                            <i class="bi bi-person text-secondary"></i>
+                        </div>
+
+                        {{-- Input field dengan border lengkung dan padding kiri --}}
+                        <input type="text" id="name" name="name" class="form-control rounded-pill ps-5"
+                            placeholder="Masukkan username" required>
                     </div>
                 </div>
 
+
                 <!-- Password -->
-                <div class="form-group position-relative mb-2">
-                    <input type="password" name="password" class="form-control" placeholder="Password"
-                        id="password-field" required>
-                    <div class="form-control-icon">
-                        <i class="bi bi-shield-lock"></i>
+                <div class="form-group mb-3">
+                    {{-- Label dan Link "Lupa Password" sejajar --}}
+                    <div class="d-flex justify-content-between align-items-center">
+                        <label for="password-field" class="form-label mb-1 text-start">Password</label>
+                        <a href="#" class="text-primary small">Lupa password?</a>
                     </div>
-                    {{-- <span toggle="#password-field" class="bi bi-eye toggle-password" onclick="togglePassword()"></span> --}}
+
+                    {{-- Wrapper input dan icon --}}
+                    <div class="position-relative">
+                        {{-- Ikon di dalam input --}}
+                        <div class="position-absolute top-50 start-0 translate-middle-y ps-3">
+                            <i class="bi bi-shield-lock text-secondary"></i>
+                        </div>
+
+                        {{-- Input password --}}
+                        <input type="password" name="password" class="form-control rounded-pill ps-5"
+                            id="password-field" placeholder="Masukkan password" required>
+
+                        {{-- Optional toggle show/hide password --}}
+                        {{-- <span toggle="#password-field" class="bi bi-eye toggle-password position-absolute top-50 end-0 translate-middle-y pe-3" onclick="togglePassword()"></span>  --}}
+
+                    </div>
                 </div>
+
 
                 <!-- Forgot password & Keep me -->
                 <div class="form-footer mb-4">
                     <div class="form-check d-flex align-items-center">
-                        {{-- <input class="form-check-input me-2" type="checkbox" name="remember" id="remember">
-                        <label class="form-check-label text-muted" for="remember">Keep me logged in</label> --}}
+                        <input class="form-check-input me-2" type="checkbox" name="remember" id="remember">
+                        <label class="form-check-label text-muted" for="remember">Ingat saya</label>
                     </div>
-                    <a href="#" class="text-primary">Forgot password?</a>
                 </div>
 
                 <!-- Submit -->
-                <button type="submit" class="btn btn-primary w-100">
-                    Log in
+                <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center rounded-pill">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>
+                    <span>Login</span>
                 </button>
+
+
             </form>
 
             {{-- <div class="mt-4">

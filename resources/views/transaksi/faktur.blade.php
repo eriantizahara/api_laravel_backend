@@ -34,8 +34,8 @@
 
     <div class="text-center">
         <h3 style="margin:0;">TIKET MASUK WAHANA</h3>
-        <p style="margin:0;">Wisata Seru Sejahtera</p>
-        <p style="margin:0;">Jl. Liburan No.123, Kota Bahagia</p>
+        <p style="margin:0;">Lawang Adventure Park</p>
+        <p style="margin:0;">Jl. Sukses No.1, Kabupaten Agam, Provinsi Sumatera Barat</p>
         <div class="border-top"></div>
     </div>
 
@@ -83,7 +83,7 @@
 
     <div class="border-top"></div>
     <div class="footer">
-        Terima kasih atas kunjungan Anda!<br>
+        Terima kasih atas Pemesanan Tiket Anda!<br>
         <strong>~ Selamat bersenang-senang ~</strong>
     </div>
 

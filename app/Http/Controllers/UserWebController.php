@@ -42,7 +42,7 @@ class UserWebController extends Controller
             'status'   => $request->status,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan');
+        return redirect()->route('users.index')->with('success', 'Data user berhasil ditambahkan');
     }
 
     // Menampilkan detail user
@@ -78,7 +78,7 @@ class UserWebController extends Controller
             'status'   => $request->status,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User berhasil diupdate');
+        return redirect()->route('users.index')->with('success', 'Data user berhasil diedit');
     }
 
     // Menghapus user

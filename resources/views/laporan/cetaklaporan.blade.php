@@ -38,8 +38,8 @@
 
         <!-- Judul dan kontak -->
         <h1>Lawang Adventure Park</h1>
-        <p>Jl. Liburan No.123, Kota Bahagia, Provinsi Bahagia</p>
-        <p>Telepon: (021) 12345678 | Email: wisata@gmail.com</p>
+        <p>Jl. Sukses No.1, Kabupaten Agam, Provinsi Sumatera Barat</p>
+        <p>Telepon: (021) 12345678 | Email: lawangadventurepark@gmail.com</p>
     </div>
 
     <!-- Judul laporan -->
