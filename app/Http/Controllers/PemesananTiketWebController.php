@@ -34,23 +34,32 @@ class PemesananTiketWebController extends Controller
     // Tampilkan form create
     public function create()
     {
-        // Ambil tanggal hari ini dalam format Y-m-d
-        $tanggalHariIni = now()->format('Y-m-d');
+        try {
+            // ✅ Generate kode pemesanan unik
+            $prefix = 'TKT' . now()->format('Ymd');
+            $latest = Pemesanan_Tiket::where('kode_pemesanan', 'like', $prefix . '%')
+                ->orderByDesc('kode_pemesanan')
+                ->first();
 
-        // Hitung jumlah transaksi di tanggal hari ini
-        $jumlahHariIni = Pemesanan_Tiket::whereDate('created_at', $tanggalHariIni)->count();
-        $nomorUrut = str_pad($jumlahHariIni + 1, 3, '0', STR_PAD_LEFT);
+            if ($latest) {
+                $lastNumber = (int) substr($latest->kode_pemesanan, -3);
+                $newNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
+            } else {
+                $newNumber = '001';
+            }
 
-        // Format kode: TKT + tanggal + urutan
-        $kode_pemesanan = 'TKT' . now()->format('Ymd') . $nomorUrut;
+            $kode_pemesanan = $prefix . $newNumber;
 
-        // Kirim ke blade
-        return view('transaksi.create', [
-            'kode_pemesanan' => $kode_pemesanan,
-            'users' => User::where('status', 'customer')->get(), // hanya user dengan status customer
-            'wahanas' => Wahana::all(),
-            'user_id' => Auth::id(), // id admin yang sedang login
-        ]);
+            // ✅ Kirim data ke view Blade
+            return view('transaksi.create', [
+                'kode_pemesanan' => $kode_pemesanan,
+                'users' => User::where('status', 'customer')->get(),
+                'wahanas' => Wahana::all(),
+                'user_id' => Auth::id(),
+            ]);
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Gagal membuat kode pemesanan: ' . $e->getMessage()]);
+        }
     }
 
 
@@ -73,9 +82,19 @@ class PemesananTiketWebController extends Controller
         ]);
 
         // Generate kode pemesanan otomatis: TKT20250721001
-        $tanggalHariIni = now()->format('Y-m-d');
-        $jumlahHariIni = Pemesanan_Tiket::whereDate('created_at', $tanggalHariIni)->count();
-        $kode_pemesanan = 'TKT' . now()->format('Ymd') . str_pad($jumlahHariIni + 1, 3, '0', STR_PAD_LEFT);
+        $prefix = 'TKT' . now()->format('Ymd');
+        $latest = Pemesanan_Tiket::where('kode_pemesanan', 'like', $prefix . '%')
+            ->orderByDesc('kode_pemesanan')
+            ->first();
+
+        if ($latest) {
+            $lastNumber = (int) substr($latest->kode_pemesanan, -3);
+            $newNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
+        } else {
+            $newNumber = '001';
+        }
+
+        $kode_pemesanan = $prefix . $newNumber;
 
         // Upload bukti pembayaran (jika ada)
         $buktiPath = $request->hasFile('bukti_pembayaran')
